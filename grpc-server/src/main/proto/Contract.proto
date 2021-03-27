@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package br.com.grpc.example.service;
+
+message ClientRequest {
+    string information = 1;
+}
+
+message ServerResponse {
+    string information = 1;
+}
+
+service ClientServerService {
+    rpc client(ClientRequest) returns (ServerResponse);
+}
