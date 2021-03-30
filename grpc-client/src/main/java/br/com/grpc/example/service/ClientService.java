@@ -10,13 +10,13 @@ public class ClientService {
     public static final String SERVER = "localhost";
     public static final int PORT = 9090;
 
-    public String getServerResponse() {
+    public String getServerResponse(String clientId) {
         ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(SERVER, PORT)
                 .usePlaintext()
                 .build();
         ClientServerServiceGrpc.ClientServerServiceBlockingStub stub = ClientServerServiceGrpc.newBlockingStub(managedChannel);
         ServerResponse response = stub.client(ClientRequest.newBuilder()
-                .setInformation("Client test successfully")
+                .setInformation(clientId)
                 .build());
         managedChannel.shutdown();
         return response.getInformation();
