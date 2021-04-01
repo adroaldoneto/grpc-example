@@ -28,6 +28,8 @@
         <grpc-spring-boot-starter.version>2.11.0.RELEASE</grpc-spring-boot-starter.version>
         <os-maven-plugin.version>1.6.1</os-maven-plugin.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
+        <spring-cloud-starter-consul-discovery.version>2.2.6.RELEASE</spring-cloud-starter-consul-discovery.version>
+        <spring-boot-starter-actuator.version>2.3.9.RELEASE</spring-boot-starter-actuator.version>
     </properties>
 
 
@@ -87,6 +89,16 @@
                 <artifactId>grpc-client-spring-boot-autoconfigure</artifactId>
                 <version>${grpc-spring-boot-starter.version}</version>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+                <version>${spring-cloud-starter-consul-discovery.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring-boot-starter-actuator.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

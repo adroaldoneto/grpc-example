@@ -1,24 +1,18 @@
 package br.com.grpc.example.service;
 
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
+import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClientService {
 
-    public static final String SERVER = "localhost";
-    public static final int PORT = 9090;
+    @GrpcClient("cloud-grpc-server-consul")
+    private ClientServerServiceGrpc.ClientServerServiceBlockingStub stub;
 
     public String getServerResponse(String clientId) {
-        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress(SERVER, PORT)
-                .usePlaintext()
-                .build();
-        ClientServerServiceGrpc.ClientServerServiceBlockingStub stub = ClientServerServiceGrpc.newBlockingStub(managedChannel);
         ServerResponse response = stub.client(ClientRequest.newBuilder()
                 .setInformation(clientId)
                 .build());
-        managedChannel.shutdown();
         return response.getInformation();
     }
 }
